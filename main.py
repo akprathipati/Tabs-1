@@ -1,25 +1,41 @@
-import projects #projects definitions are placed in different file
-
-# https://flask.palletsprojects.com/en/1.1.x/api/
 from flask import Flask, render_template
+import os
+import jinja2
+
 #create a Flask instance
 app = Flask(__name__)
 
-#connects default URL of server to render home.html
+
+#connects default URL to a function
 @app.route('/')
-def home_route():
-  return render_template("home.html", projects=projects.setup())
+def home():
+    #Flask import uses Jinga to render HTML
+    return render_template("home.html")
 
-#connects /hello path of server to render hello.html
-@app.route('/hello/')
-def hello_rooute():
-  return render_template("hello.html", projects=projects.setup())
 
-#connects /flask path of server to render flask.html
-@app.route('/flask/')
-def flask_route():
-  return render_template("flask.html", projects=projects.setup())
+#connect to videos page
+@app.route('/videos')
+def video():
+    return render_template("videos.html")
+
+
+#connects to calculator page
+@app.route('/calculator')
+def calulator():
+    return render_template("calculator.html")
+
+
+#connects to journals page
+@app.route('/journals')
+def journals():
+    return render_template("journals.html")
+
+@app.route('/quizzes')
+def quizzes():
+   return render_template("quizzes.html")
 
 if __name__ == "__main__":
-  #runs the application on the repl development server
-  app.run(port='3000', host='0.0.0.0')
+    #runs the application on the repl development server
+    app.run(debug=True, port='5000', host='127.0.0.1')
+    #KK
+    #Karam
